@@ -28,8 +28,10 @@ const NavBar = () => {
           <li key={link.href}>
             <Link
               className={classNames({
-                "text-zinc-900 bg-slate-100 px-5 py-2": link.href === path,
-                "text-zinc-500": link.href !== path,
+                "text-zinc-900 bg-slate-100 px-5 py-2": path.startsWith(
+                  link.href
+                ),
+                "text-zinc-500": !path.startsWith(link.href),
                 "hover:text-zinc-800 transition-all": true,
               })}
               href={link.href}
