@@ -35,7 +35,7 @@ const NavBar = () => {
           <li key={link.href}>
             <Link
               className={classNames({
-                "text-zinc-900 bg-slate-100 px-5 py-2": showActiveLink(
+                "text-zinc-900 bg-slate-100 rounded px-5 py-2": showActiveLink(
                   link.href
                 ),
                 "text-zinc-500": showActiveLink(link.href),
