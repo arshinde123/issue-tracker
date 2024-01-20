@@ -18,6 +18,13 @@ const NavBar = () => {
       href: "/issues",
     },
   ];
+
+  const showActiveLink = (href: string) => {
+    if (path === "/" && href === "/") return true;
+    if (path !== "/" && href !== "/" && path.startsWith(href)) return true;
+    return false;
+  };
+
   return (
     <nav className="flex space-x-6 border-b mb-5 px-5 h-14 items-center">
       <Link href="/">
@@ -28,10 +35,10 @@ const NavBar = () => {
           <li key={link.href}>
             <Link
               className={classNames({
-                "text-zinc-900 bg-slate-100 px-5 py-2": path.startsWith(
+                "text-zinc-900 bg-slate-100 px-5 py-2": showActiveLink(
                   link.href
                 ),
-                "text-zinc-500": !path.startsWith(link.href),
+                "text-zinc-500": showActiveLink(link.href),
                 "hover:text-zinc-800 transition-all": true,
               })}
               href={link.href}
