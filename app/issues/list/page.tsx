@@ -11,10 +11,6 @@ interface Props {
 }
 
 const IssuesPage = async ({ searchParams }: Props) => {
-  const status = Object.values(Status).includes(searchParams.status)
-    ? searchParams.status
-    : undefined;
-
   const columns: {
     label: string;
     value: keyof Issue;
@@ -25,10 +21,21 @@ const IssuesPage = async ({ searchParams }: Props) => {
     { label: "Created", value: "createdAt", className: "hidden md:table-cell" },
   ];
 
+  const status = Object.values(Status).includes(searchParams.status)
+    ? searchParams.status
+    : undefined;
+
+  const orderBy = columns
+    .map((column) => column.value)
+    .includes(searchParams.orderBy)
+    ? { [searchParams.orderBy]: "asc" }
+    : undefined;
+
   const issues = await prisma.issue.findMany({
     where: {
       status: status,
     },
+    orderBy: orderBy,
   });
 
   return (
