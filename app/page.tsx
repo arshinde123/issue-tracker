@@ -10,9 +10,7 @@ export default function Home({
     <Pagination
       itemCount={100}
       pageSize={10}
-      currentPage={
-        isNaN(parseInt(searchParams.page)) ? 1 : parseInt(searchParams.page)
-      }
+      currentPage={parseInt(searchParams.page) || 1}
     />
   );
 }
